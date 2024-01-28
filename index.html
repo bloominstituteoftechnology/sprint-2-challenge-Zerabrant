@@ -6,28 +6,95 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
-
+      if (profile.active) {
+        if (reason) {
+          return {
+            active: false,
+            reason: reason
+          };
+        } else {
+          return "confirm status manually";
+        }
+      } else {
+        return {
+          active: true,
+          reason: undefined
+        };
+      }
     }
-
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
+      if (x < 1 || x > 3 || y < 1 || y > 3) {
+        return "invalid coordinates"
+      }
+      let startingCell = grid[x-1][y-1 ];
 
+      if (startingCell === "🟥") {
+        return "🟥 💀";
+      } else if (startingCell === "🟦") {
+    return "🟦 🥳";
     }
+  }
 
     // 👉 CHALLENGE 3
-    function booleanize(obj) {
+    function booleanize(obj) { 
+  const newObj = {};
 
+  for (const prop in obj) {
+    const value = obj[prop];
+
+    if (prop.length > 9) {
+      return "shorten all prop names to 9 chars or less";
     }
+
+    if (value !== null) {
+      
+      newObj[prop] = value === 1 ? true : value === 0 ? false : value;
+    }
+  }
+
+  return newObj;
+}
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
+      if (text.length === 0 || forbidden.length === 0) {
+        return text;
+      }
+      const cleanText = text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+      const words = cleanText.split(/\s+/);
 
-    }
+      const scrubbedWords = [];
+  
+      for (const word of words) {
+    const index = forbidden.indexOf(word.toLowerCase());
+    scrubbedWords.push(index !== -1 ? 'x'.repeat(word.length) : word);
+  }
+
+  const scrubbedText = scrubbedWords.join(' ');
+
+  return scrubbedText;
+}
+
+    
+
+
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
     function normalizePhoneNumber(num) {
+      const templateNum = "(XXX) XXX-XXXX";
+  let formattedNumber = templateNum;
+  
+    for (let i = num.length - 1, j = templateNum.length - 1; i >= 0 && j >= 0; i--, j--) {
+   formattedNumber = formattedNumber.substring(0, j) + num[i] + formattedNumber.substring(j + 1);
+  }
 
-    }
+  return formattedNumber;
+
+} 
+
+
+  
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
     function diceRolls() {
