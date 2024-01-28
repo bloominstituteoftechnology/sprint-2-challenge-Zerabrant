@@ -6,28 +6,33 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
-      if (profile.active) {
-        if (reason) {
-          return {
-            active: false,
-            reason: reason
-          };
-        } else {
-          return "confirm status manually";
-        }
-      } else {
-        return {
-          active: true,
-          reason: undefined
-        };
-      }
+  if (profile.active) {
+    if (reason) {
+      
+      return {
+        active: false,
+        reason: reason
+      };
+    } else {
+     
+      return "confirm status manually";
     }
+  } else {
+   
+    return {
+      active: true,
+      
+    };
+  }
+}
+
+
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
       if (x < 1 || x > 3 || y < 1 || y > 3) {
         return "invalid coordinates"
       }
-      let startingCell = grid[x-1][y-1 ];
+      let startingCell = grid[y-1][x-1 ];
 
       if (startingCell === "🟥") {
         return "🟥 💀";
